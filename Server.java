@@ -12,8 +12,8 @@ public class Server {
 		int x=0;
 		ServerSocket welcomeSocket = new ServerSocket(3456);
 
-		Socket connectionSocket = welcomeSocket.accept();
-		System.out.println("Waiting...");
+		System.out.println("Waiting...");	//print "wait" before block
+		Socket connectionSocket = welcomeSocket.accept();	//This is a blocked code
 		
 		BufferedReader inFromClient=new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 		DataOutputStream outToClient=new DataOutputStream(connectionSocket.getOutputStream());
