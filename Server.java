@@ -10,7 +10,6 @@ public class Server {
 		String clientRequest;
 		String answer;
 		int x=0;
-		int y=0;
 		ServerSocket welcomeSocket = new ServerSocket(3456);
 
 		Socket connectionSocket = welcomeSocket.accept();
@@ -21,12 +20,12 @@ public class Server {
 		clientRequest=inFromClient.readLine();
 		System.out.println("server Received number: "+clientRequest);
 		/*convert operation*/
-		x=Integer.parseInt(clientRequest);
-		while(x>0){
-			y+=x%10;
-			x/=10;
-		}
-		answer=String.valueOf(y);
+		String[]result=clientRequest.split(",");
+		for(String string:result)
+			x+=Integer.parseInt(string);
+		
+		System.out.println("x:" +x);
+		answer=String.valueOf(x);
 		/*convert operation*/
 		
 		outToClient.writeBytes(answer+'\n');
@@ -34,3 +33,5 @@ public class Server {
 		welcomeSocket.close();
 	}
 }
+
+ 
